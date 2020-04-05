@@ -1,10 +1,10 @@
 const express = require('express');
-const mysqlConnetion = require('../connection');
+const mysqlConnection = require('../connection');
 
 const Router = express.Router();
 
 Router.get('/', (req, res) => {
-  mysqlConnetion.query('SELECT * FROM people', (err, rows, fields) => {
+  mysqlConnection.query('SELECT * FROM people;', (err, rows, fields) => {
     if (err) {
       console.log(err);
     } else {

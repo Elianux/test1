@@ -18,6 +18,10 @@ function startConnection() {
       console.log('Connected');
     }
   });
+
+  mysqlConnection.on('error', (err) => {
+    if (err.fatal) startConnection();
+  });
 };
 
 startConnection();
