@@ -2,18 +2,24 @@ const mysql = require('mysql');
 
 const mysqlConnection = mysql.createConnection({
   host: 'localhost',
+  port: '3306',
   user: 'root',
   password: '33355032',
-  database: 'Edureka',
+  database: 'edureka',
   multipleStatements: true,
 });
 
-mysqlConnection.connect((err) => {
-  if (err) {
-    console.log('Connected ');
-  } else {
-    console.log('Connection failed');
-  }
-});
+function startConnection() {
+  mysqlConnection.connect((err) => {
+    if (err) {
+      console.log('Connection failed', err.code);
+      startConnection();
+    } else {
+      console.log('Connected');
+    }
+  });
+};
+
+startConnection();
 
 module.exports = mysqlConnection;
